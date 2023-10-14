@@ -185,4 +185,36 @@ export default class DragUtils {
     tmp.innerHTML = html;
     return tmp.textContent || tmp.innerText || '';
   }
+
+  /**
+   * Shuffle position of dragables/dropZones
+   *
+   * @param {Object} elements
+   */
+  static shufflePosition(elements) {
+    // Shuffle function
+    const shuffle = function(array)  {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    // Get positions of elements into an array
+    let positions = [];
+    for (let element of elements) {
+      if (element != undefined) positions.push({ x: element.x, y: element.y });
+    }
+    // Shuffle
+    shuffle(positions);
+    // Set back
+    let i = 0;
+    for (let element of elements) {
+      if (element != undefined) {
+        element.x = positions[i].x;
+        element.y = positions[i].y;
+        i++;
+      }
+    }
+  }
 }

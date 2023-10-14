@@ -198,6 +198,10 @@ function C(options, contentId, contentData) {
     }
   }
 
+  if (options.behaviour.enableShuffle) {
+    DragUtils.shufflePosition(this.draggables);
+  }
+
   // Create a count to subtrack from score
   this.numDropZonesWithoutElements = 0;
 
